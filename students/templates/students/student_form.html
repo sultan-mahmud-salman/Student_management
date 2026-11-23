@@ -1,0 +1,24 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Student Form | Student Management System{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Student records</p>
+        <h1>Student form</h1>
+        <p class="page-description">Enter the student details below.</p>
+    </div>
+</div>
+
+<section class="panel form-panel">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button class="button button-primary" type="submit">Save student</button>
+            <a class="button button-secondary" href="{% url 'student_list' %}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

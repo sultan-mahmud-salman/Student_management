@@ -1,0 +1,54 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Dashboard | Student Management System{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Overview</p>
+        <h1>Dashboard</h1>
+        <p class="page-description">A clear view of your student records and departments.</p>
+    </div>
+    <a class="button button-primary" href="{% url 'student_create' %}">Add student</a>
+</div>
+
+<section class="stats-grid" aria-label="Student statistics">
+    <article class="stat-card">
+        <span class="stat-icon stat-icon-blue">ST</span>
+        <p class="stat-label">Total students</p>
+        <p class="stat-value">{{ total_students }}</p>
+        <p class="stat-note">Students in your records</p>
+    </article>
+    <article class="stat-card">
+        <span class="stat-icon stat-icon-teal">DP</span>
+        <p class="stat-label">Departments</p>
+        <p class="stat-value">{{ total_departments }}</p>
+        <p class="stat-note">Departments represented</p>
+    </article>
+</section>
+
+<section class="panel" aria-labelledby="recent-students-heading">
+    <div class="panel-header">
+        <div>
+            <p class="eyebrow">Latest records</p>
+            <h2 id="recent-students-heading">Recent students</h2>
+        </div>
+        <a class="text-link" href="{% url 'student_list' %}">View all students</a>
+    </div>
+
+    <ul class="recent-list">
+        {% for student in recent_students %}
+            <li class="recent-item">
+                <span class="student-avatar">{{ student.name|first|upper }}</span>
+                <span class="student-summary">
+                    <strong>{{ student.name }}</strong>
+                    <span>Roll {{ student.roll }}</span>
+                </span>
+                <span class="department-badge">{{ student.department }}</span>
+            </li>
+        {% empty %}
+            <li class="empty-state">No students found. Add your first student to get started.</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-card">
+        <span class="auth-mark">SM</span>
+        <p class="eyebrow">Get started</p>
+        <h1>Create your account</h1>
+        <p class="auth-description">Set up an account to manage your student records.</p>
+
+        <form class="auth-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button button-primary button-full" type="submit">Create account</button>
+        </form>
+
+        <p class="auth-footer">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</section>
+{% endblock %}

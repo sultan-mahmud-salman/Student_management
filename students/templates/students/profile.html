@@ -1,0 +1,30 @@
+{% extends 'students/base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Account</p>
+        <h1>My profile</h1>
+        <p class="page-description">Your account details and student overview.</p>
+    </div>
+</div>
+
+<section class="panel profile-card">
+    <span class="profile-avatar">{{ user.username|first|upper }}</span>
+    <div class="profile-details">
+        <h2>{{ user.username }}</h2>
+        <p>{{ user.email|default:"Email not provided" }}</p>
+    </div>
+</section>
+
+<section class="stats-grid profile-stats">
+    <article class="stat-card">
+        <span class="stat-icon stat-icon-blue">ST</span>
+        <p class="stat-label">Your students</p>
+        <p class="stat-value">{{ total_students }}</p>
+        <a class="text-link" href="{% url 'student_list' %}">Open student list</a>
+    </article>
+</section>
+{% endblock %}

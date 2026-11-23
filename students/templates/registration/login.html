@@ -1,0 +1,22 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-card">
+        <span class="auth-mark">SM</span>
+        <p class="eyebrow">Welcome back</p>
+        <h1>Sign in to your account</h1>
+        <p class="auth-description">Manage your student records from one place.</p>
+
+        <form class="auth-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button button-primary button-full" type="submit">Login</button>
+        </form>
+
+        <p class="auth-footer">Account নেই? <a href="{% url 'register' %}">Register করো</a></p>
+    </div>
+</section>
+{% endblock %}
